@@ -1,4 +1,4 @@
-# A LinkStack Theme
+# PaperBold Theme
 
 Find more themes: https://github.com/JulianPrieber/llc-themes
 
