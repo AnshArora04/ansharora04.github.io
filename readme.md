@@ -3,7 +3,7 @@
 Find more themes: https://github.com/JulianPrieber/llc-themes
 
 - Theme Name: PaperBold
-- Theme Version: 1.0
+- Theme Version: 1.1
 - Theme Date: 14/08/2024 <!-- DD/MM/YYYY -->
 - Theme Author: nekosheen
 - Theme Author URI: https://github.com/nekosheen
