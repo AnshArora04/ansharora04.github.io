@@ -91,11 +91,11 @@ html {
   --image-height: 140px;
 
   /* You can change the colors of the title and description section by typing the color codes. */
-  --title-color: #888;
+  --title-color: #000;
   --description-color: #fff;
 
   /* You can change the colors of social media icons by changing the color code. */
-  --svg-color: #fff;
+  --svg-color: #000;
 
   /* You can change the background, text color and active color of the menu by changing the color codes. */
   --menu-background-color: #1f232e;
@@ -103,9 +103,9 @@ html {
   --menu-active-text-color: #03dac6;
 
   /* You can change the button's background, text color and active color by changing the color codes. */
-  --button-background-color: #222840;
-  --button-text-color: #fff;
-  --button-text-hover-color: #03dac6;
+  --button-background-color: #fff;
+  --button-text-color: #888;
+  --button-text-hover-color: #000;
 
   /* You can change the background, text color and active color of the text field by changing the color codes. */
   --textarea-background-color: #1f232e;
@@ -189,7 +189,7 @@ body {
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
 h1 {
   color: var(--title-color);
-  font-size: 3em;
+  font-size: 2em;
   /* font-weight: var(--font-weight); */
   font-weight: 600px;
 }

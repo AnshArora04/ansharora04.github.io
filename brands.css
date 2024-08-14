@@ -88,7 +88,7 @@
 }
 
 .social-icon {
-  color: #fff;
+  color: #000;
 }
 
 /* Buttons
@@ -111,8 +111,11 @@
   max-width: 600px;
   border-radius: 14px;
   margin-bottom: 20px !important;
-  font-weight: 500;
-  letter-spacing: 0.3rem;
+  font-weight: 350;
+  /* letter-spacing: 0.3rem; */
+
+  border: 1px solid black;
+  box-shadow: 6px 4px 0px 5px #000000 !important;
 }
 
 .button {
