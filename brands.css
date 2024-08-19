@@ -139,9 +139,9 @@
   vertical-align: middle;
   width: 20px;
   height: 20px;
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  filter: grayscale(100%);
+  -webkit-filter: brightness(0%);
+  -moz-filter: brightness(0%);
+  filter: brightness(0%);
 }
 
 svg {
