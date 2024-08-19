@@ -68,7 +68,7 @@
   box-shadow: 0 0 1px rgba(3, 218, 198, 30%);
 }
 .sharebutton:hover {
-  box-shadow: 0 0 6px rgba(3, 218, 198, 30%);
+  box-shadow: 0 0 6px rgba(44, 52, 51, 0.3);
 }
 
     .sharebutton-mb {
@@ -79,4 +79,5 @@
       left: 3px;
       margin-left: auto;
       margin-right: auto;
+      color: black !important;
      }
