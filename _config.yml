@@ -6,8 +6,7 @@ email: ansh.aro@outlook.com
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-minimal
-remote_theme: brennanbrown/paperbold
+remote_theme: nekosheen/PaperBold
 
 plugins:
   - jekyll-feed
