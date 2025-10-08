@@ -600,4 +600,48 @@ return [
 
 ---
 
-**Note**: This technical specification ensures exact replication of the theme's functionality while optimizing for static deployment.
+## Version Control Guidelines
+
+### Commit Message Format
+Each step of the development process should be committed with a clear, structured message:
+
+```
+feat: Short description of feature
+
+- Detailed bullet points of changes
+- Additional context or changes
+
+Part of static site conversion: Step X/6
+```
+
+### Commit Types
+- feat: New features or major changes
+- style: Style/UI changes
+- fix: Bug fixes
+- chore: Maintenance tasks
+- docs: Documentation updates
+
+### Commit Best Practices
+1. Make atomic commits after each step
+2. Include which step of the conversion process (e.g., "Step 1/6")
+3. List all significant changes in bullet points
+4. Reference relevant technical details
+5. Keep commit messages clear and descriptive
+
+Example:
+```
+feat: Initial project structure and basic HTML
+
+- Create modular directory structure
+  - css/ (with components subdirectory)
+  - js/ (with lib and components subdirectories)
+  - data/ (for configuration files)
+  - assets/ (for fonts and images)
+- Add basic index.html for structure testing
+
+Part of static site conversion: Step 1/6
+```
+
+---
+
+**Note**: Always commit changes after each significant step and include which part of the conversion process it represents.
