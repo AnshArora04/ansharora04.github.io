@@ -1,50 +1,26 @@
-<!DOCTYPE html><!DOCTYPE html><!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en">
-
-<head><html lang="en"><html lang="en">
-
+<head>
     <meta charset="utf-8">
-
-    <title>{{ site.title }}</title><head><head>
-
+    <title>{{ site.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="{{ '/skeleton-auto.css' | relative_url }}">    <meta charset="UTF-8">    <meta charset="UTF-8">
-
+    <link rel="stylesheet" href="{{ '/skeleton-auto.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/animations.css' | relative_url }}">
-
-    <link rel="stylesheet" href="{{ '/brands.css' | relative_url }}">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="{{ '/brands.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/share.button.css' | relative_url }}">
-
-    <script src="{{ '/extra/custom-assets/jquery.min.js' | relative_url }}"></script>    <title>{{ page.title }}</title>    <title>{{ site.title }}</title>
-
+    <script src="{{ '/extra/custom-assets/jquery.min.js' | relative_url }}"></script>
     <script src="{{ '/extra/custom-assets/particles.min.js' | relative_url }}"></script>
-
-    {% include custom-head.html if_exists %}    <link rel="stylesheet" href="{{ '/skeleton-auto.css' | relative_url }}"></head>
-
+    {% include custom-head.html %}
 </head>
-
-<body>    <link rel="stylesheet" href="{{ '/animations.css' | relative_url }}"><body>
-
+<body>
     <div class="container">
-
-        <div class="row">    <link rel="stylesheet" href="{{ '/brands.css' | relative_url }}">    {{ content }}
-
+        <div class="row">
             <div class="twelve columns">
-
-                {{ content }}    <link rel="stylesheet" href="{{ '/share.button.css' | relative_url }}"></body>
-
+                {{ content }}
             </div>
-
-        </div></head></html>
-
-    </div><body>
-
-    {% include custom-body.html if_exists %}    {{ content }}
-
-    {% include custom-body-end.html if_exists %}</body>
-
-</body></html>
+        </div>
+    </div>
+    {% include custom-body.html %}
+    {% include custom-body-end.html %}
+</body>
 </html>
