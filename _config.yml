@@ -1,46 +1,14 @@
-title: PaperBold Themetitle: Ansh Aroratitle: Hellotitle: Ansh Arora
-
+title: Ansh Arora
 description: A clean and modern Jekyll theme
-
-baseurl: ""email: your-email@example.com
-
+baseurl: ""
 url: "https://ansharora04.github.io"
-
-description: >-baseurl: ""email: ansh.aro@outlook.com
+email: ansh.aro@outlook.com
 
 # Build settings
-
-markdown: kramdown  Write an awesome description for your new site here.
-
-theme: jekyll-theme-minimal
-
-plugins:baseurl: ""url: "https://ansharora04.github.io"description: Mathematics, Statistics, and Finance Research
-
-  - jekyll-feed
-
-  - jekyll-seo-tagurl: "https://ansharora04.github.io"baseurl: "" 
-
-url: "https://ansharora04.github.io"
-
-# Build settingsdomain: "ansharora04.github.io"
-
 markdown: kramdown
-
-remote_theme: nekosheen/PaperBold# Author Settings
-
-plugins:author:
-
-  - jekyll-feed  name: Ansh Arora
-
-  - jekyll-remote-theme  bio: Mathematician and Researcher in Statistics and Finance
-  occupation: Research Scholar
-  email: ansh.aro@outlook.com
-  github_username: AnshArora04
-  avatar: /assets/images/avatar.jpg
-  location: Your Location
-
-# Build settings
+theme: jekyll-theme-minimal
 remote_theme: brennanbrown/paperbold
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
@@ -91,3 +59,16 @@ social:
 
 # Analytics (optional)
 google_analytics: # Add your Google Analytics ID
+
+# Author Settings
+author:
+  name: Ansh Arora
+  bio: Mathematician and Researcher in Statistics and Finance
+  occupation: Research Scholar
+  email: ansh.aro@outlook.com
+  github_username: AnshArora04
+  avatar: /assets/images/avatar.jpg
+  location: Your Location
+
+# Build settings (extra, if needed)
+domain: "ansharora04.github.io"
