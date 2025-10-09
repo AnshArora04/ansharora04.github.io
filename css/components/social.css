@@ -29,11 +29,50 @@
     font-size: 1.2em;
 }
 
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 4px 3px 0px 3px #000000;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+    background: var(--button-background-color);
+}
+
+.icon-button:hover {
+    transform: translateY(-2px);
+}
+
+.icon-button i {
+    font-size: 1.3em;
+}
+
 /* Provider-specific colors on hover */
-.social-button[href*="linkedin"]:hover {
+.icon-button[href*="linkedin"]:hover {
     color: #0077B5;
 }
 
-.social-button[href*="instagram"]:hover {
+.icon-button[href*="github"]:hover {
+    color: #333;
+}
+
+.icon-button[href*="mailto"]:hover {
+    color: #EA4335;
+}
+
+.icon-button[href*="instagram"]:hover {
     color: #E4405F;
 }
