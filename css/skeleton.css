@@ -1,0 +1,119 @@
+/* Base Styles from skeleton-auto.css, converted for static site
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+:root {
+  /* Base Theme Variables */
+  --font-family: 'Roboto', sans-serif;
+  --font-size: 16px;
+  --background-color: #fff;
+  --title-color: #000;
+  --description-color: #fff;
+  --button-background-color: #fff;
+  --button-text-color: #888;
+  --button-text-hover-color: #000;
+  
+  /* Timeline Colors */
+  --timeline-color: #03dac6;
+  --timeline-work-color: #2196F3;
+  --timeline-education-color: #9C27B0;
+  --timeline-project-color: #4CAF50;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1f232e;
+    --title-color: #fff;
+    --button-background-color: #222840;
+    --button-text-color: #fff;
+    --card-background: #2a2f3d;
+  }
+}
+
+/* Grid
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* For devices larger than 400px */
+@media (min-width: 400px) {
+  .container {
+    width: 85%;
+    padding: 0;
+  }
+}
+
+/* For devices larger than 550px */
+@media (min-width: 550px) {
+  .container {
+    width: 80%;
+  }
+}
+
+/* Base Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+html {
+  font-size: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--title-color);
+  font-size: var(--font-size);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+h1 {
+  color: var(--title-color);
+  font-size: 2em;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: var(--description-color);
+  font-size: 1.2em;
+  line-height: 1.5em;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+/* Links
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+a {
+  color: var(--button-text-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--button-text-hover-color);
+}
+
+/* Spacing
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.spacing {
+  padding: 0 10px;
+  padding-top: 50px;
+}
+
+/* Hidden Scrollbar
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
