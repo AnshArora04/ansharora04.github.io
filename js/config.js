@@ -7,7 +7,8 @@ const siteConfig = {
     // Social Links
     social: {
         linkedin: "https://www.linkedin.com/in/your-profile",
-        instagram: "https://www.instagram.com/your-profile"
+        github: "https://github.com/AnshArora04",
+        email: "your.email@example.com"
     },
 
     // Projects/Research
