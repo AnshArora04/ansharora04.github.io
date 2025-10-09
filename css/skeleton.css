@@ -154,6 +154,41 @@ p {
   display: inline-block;
 }
 
+/* Button Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 58px;
+  padding: 0 20px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  border: 1px solid black;
+  box-shadow: 6px 4px 0px 5px #000000;
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 2px 0px 3px #000000;
+}
+
+.button:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 1px 0px 1px #000000;
+}
+
+/* Button Icon */
+.button i {
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
@@ -161,7 +196,7 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:not(.button):hover {
   color: var(--button-text-hover-color);
 }
 
@@ -170,6 +205,22 @@ a:hover {
 .spacing {
   padding: 0 10px;
   padding-top: 50px;
+}
+
+/* Social Links Section
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 0 1rem;
+}
+
+.social-links .button {
+  max-width: 400px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
 /* Hidden Scrollbar
