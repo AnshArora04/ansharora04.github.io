@@ -1,0 +1,39 @@
+/* Social Links */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 58px;
+    border-radius: 14px;
+    border: 1px solid black;
+    box-shadow: 6px 4px 0px 5px #000000;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+    background: var(--button-background-color);
+}
+
+.social-button:hover {
+    transform: translateY(-2px);
+}
+
+.social-button i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+/* Provider-specific colors on hover */
+.social-button[href*="linkedin"]:hover {
+    color: #0077B5;
+}
+
+.social-button[href*="instagram"]:hover {
+    color: #E4405F;
+}

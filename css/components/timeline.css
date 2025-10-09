@@ -1,0 +1,102 @@
+/* Timeline System */
+.timeline {
+    position: relative;
+    max-width: 600px;
+    margin: 20px auto 0;
+    padding-left: 50px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: var(--accent-color);
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+/* Timeline dot */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -54px;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    border: 2px solid var(--background-color);
+}
+
+.timeline-content {
+    padding: 20px;
+    background: var(--button-background-color);
+    border-radius: 14px;
+    border: 1px solid black;
+    box-shadow: 6px 4px 0px 5px #000000;
+}
+
+/* Entry types */
+.timeline-project {
+    border-left: 3px solid #4CAF50;
+}
+
+.timeline-work {
+    border-left: 3px solid #2196F3;
+}
+
+.timeline-education {
+    border-left: 3px solid #9C27B0;
+}
+
+/* Content structure */
+.timeline-header {
+    margin-bottom: 10px;
+}
+
+.timeline-role {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.timeline-meta {
+    color: var(--text-color);
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.timeline-points {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.timeline-points li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.timeline-points li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+.timeline-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.timeline-link:hover {
+    text-decoration: underline;
+}
