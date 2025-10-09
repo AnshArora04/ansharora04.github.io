@@ -207,6 +207,20 @@ a:not(.button):hover {
   padding-top: 50px;
 }
 
+/* Section Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.section-button {
+  max-width: 300px;
+  margin: 0 auto 2rem auto;
+  font-size: 1.4em;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.section-button i {
+  font-size: 1.1em;
+}
+
 /* Social Links Section
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .social-links {
