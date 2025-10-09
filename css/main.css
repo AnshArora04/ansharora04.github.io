@@ -82,6 +82,14 @@ body {
     z-index: 0;
 }
 
+/* Greek Alpha Styling */
+.greek-alpha {
+    font-family: "Times New Roman", serif;
+    font-size: 1.1em;
+    font-weight: 500;
+    font-style: italic;
+}
+
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
     :root {
