@@ -56,7 +56,7 @@
 
 /* Spacing for sections */
 section {
-  margin: 2rem 0;
+  margin: 1rem 0;
   padding: 0.5rem 0;
 }
 
@@ -211,7 +211,7 @@ a:not(.button):hover {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .section-button {
   max-width: 300px;
-  margin: 0 auto 2rem auto;
+  margin: 0 auto 16px auto;  /* Changed from 2rem to 16px to match social buttons */
   font-size: 1.4em;
   font-weight: 600;
   letter-spacing: -0.3px;
@@ -229,6 +229,7 @@ a:not(.button):hover {
   align-items: center;
   gap: 16px;
   padding: 0 1rem;
+  margin-top: -8px;  /* Offset the last section button margin */
 }
 
 .social-links .button {
