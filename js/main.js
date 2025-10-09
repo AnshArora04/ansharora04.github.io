@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize particles.js
     const particles = new Particles('.background', {
         selector: '.background',
-        maxParticles: 100,
+        maxParticles: 150,
         sizeVariations: 3,
-        speed: 0.5,
-        color: '#ffffff',
+        speed: 0.3,
+        color: '#03dac6',
         minDistance: 120,
         connectParticles: true
     });

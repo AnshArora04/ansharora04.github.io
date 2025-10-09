@@ -5,12 +5,12 @@
   /* Base Theme Variables */
   --font-family: 'Roboto', sans-serif;
   --font-size: 16px;
-  --background-color: #fff;
-  --title-color: #000;
+  --background-color: #1f232e;
+  --title-color: #fff;
   --description-color: #fff;
-  --button-background-color: #fff;
-  --button-text-color: #888;
-  --button-text-hover-color: #000;
+  --button-background-color: #222840;
+  --button-text-color: #fff;
+  --button-text-hover-color: #03dac6;
   
   /* Timeline Colors */
   --timeline-color: #03dac6;
@@ -82,7 +82,7 @@ h1 {
 }
 
 p {
-  color: var(--description-color);
+  color: var(--title-color);
   font-size: 1.2em;
   line-height: 1.5em;
   font-weight: 300;
