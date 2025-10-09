@@ -135,6 +135,14 @@ p {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .header-content {
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subtitle-wrapper {
+  width: 100%;
+  text-align: center;
 }
 
 .subtitle {
@@ -143,6 +151,7 @@ p {
   font-size: 1.1em;
   color: var(--title-color);
   opacity: 0.9;
+  display: inline-block;
 }
 
 /* Links
