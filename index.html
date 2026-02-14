@@ -3,71 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ansh Arora's portfolio - Showcasing projects, research, and professional experience">
-    <title>Ansh Arora - Portfolio</title>
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="css/animations.css">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Happy Valentine's Day 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a0010 0%, #3d0020 40%, #6b0030 100%);
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+        }
+
+        /* ── Floating background hearts ── */
+        .bg-hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-heart {
+            position: absolute;
+            bottom: -60px;
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: floatUp 8s ease-in infinite;
+            color: rgba(255, 150, 180, 0.25);
+        }
+
+        @keyframes floatUp {
+            0%   { transform: translateY(0) scale(1)   rotate(0deg);   opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 0.6; }
+            100% { transform: translateY(-110vh) scale(1.4) rotate(20deg); opacity: 0; }
+        }
+
+        /* ── Main scene ── */
+        .scene {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+        }
+
+        /* ── Heart button ── */
+        .heart-btn {
+            position: relative;
+            cursor: pointer;
+            background: none;
+            border: none;
+            outline: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .heart-svg {
+            width: 200px;
+            height: 185px;
+            filter: drop-shadow(0 0 30px rgba(255, 60, 120, 0.8));
+            animation: heartbeat 1.4s ease-in-out infinite;
+            transition: transform 0.15s ease;
+        }
+
+        .heart-btn:hover .heart-svg {
+            filter: drop-shadow(0 0 50px rgba(255, 80, 150, 1));
+        }
+
+        .heart-btn:active .heart-svg {
+            transform: scale(0.9);
+        }
+
+        @keyframes heartbeat {
+            0%   { transform: scale(1); }
+            14%  { transform: scale(1.1); }
+            28%  { transform: scale(1); }
+            42%  { transform: scale(1.06); }
+            70%  { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        .heart-label {
+            color: #ffd6e8;
+            font-size: 1.55rem;
+            letter-spacing: 0.04em;
+            text-shadow: 0 0 18px rgba(255, 100, 160, 0.9);
+            text-align: center;
+            line-height: 1.4;
+            pointer-events: none;
+        }
+
+        .click-hint {
+            color: rgba(255, 200, 220, 0.55);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            animation: pulse-hint 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-hint {
+            0%, 100% { opacity: 0.4; }
+            50%       { opacity: 0.9; }
+        }
+
+        /* ── Overlay (photo reveal) ── */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            background: rgba(10, 0, 8, 0.88);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        .overlay.visible {
+            opacity: 1;
+        }
+
+        .overlay-photo {
+            max-width: min(480px, 90vw);
+            max-height: 65vh;
+            border-radius: 20px;
+            border: 3px solid rgba(255, 100, 160, 0.6);
+            box-shadow: 0 0 60px rgba(255, 60, 120, 0.5), 0 0 120px rgba(180, 0, 80, 0.3);
+            object-fit: cover;
+            transform: scale(0.7);
+            opacity: 0;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+        }
+
+        .overlay.visible .overlay-photo {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .overlay-message {
+            color: #ffd6e8;
+            font-size: 1.8rem;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(255, 100, 160, 0.9);
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+        }
+
+        .overlay.visible .overlay-message {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            margin-top: 4px;
+            background: none;
+            border: 1px solid rgba(255, 150, 190, 0.4);
+            color: rgba(255, 200, 220, 0.6);
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 8px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            opacity: 0;
+            transition: opacity 0.5s ease 0.5s, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .overlay.visible .close-btn {
+            opacity: 1;
+        }
+
+        .close-btn:hover {
+            color: #ffd6e8;
+            border-color: rgba(255, 150, 190, 0.9);
+        }
+
+        /* ── Burst hearts (on click) ── */
+        .burst-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 20;
+            font-size: 1.4rem;
+            animation: burst 1.2s ease-out forwards;
+        }
+
+        @keyframes burst {
+            0%   { opacity: 1; transform: translate(0, 0) scale(1); }
+            100% { opacity: 0; transform: var(--tx) scale(0.3); }
+        }
+
+        /* ── Floating overlay hearts ── */
+        .overlay-hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 11;
+            overflow: hidden;
+        }
+
+        .float-heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: floatUp 5s ease-in forwards;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header Section -->
-        <header class="fade-in">
-            <div class="header-content">
-                <h1 class="button-hover">Ansh Aror<span class="greek-alpha">α</span></h1>
-                <div class="subtitle-wrapper">
-                    <p class="subtitle button-hover">Mathematics & Finance</p>
-                </div>
-            </div>
-        </header>
 
+    <!-- Ambient background hearts -->
+    <div class="bg-hearts" id="bgHearts"></div>
 
+    <!-- Main scene -->
+    <div class="scene">
+        <button class="heart-btn" id="heartBtn" aria-label="Click to reveal">
 
-        <!-- Contact Section -->
-        <section id="contact" class="fade-in">
-            <div class="social-links">
-                <a href="./about.html" class="button">
-                    <i class="fas fa-user"></i>
-                    About Me
-                </a>
-                <a href="./projects.html" class="button">
-                    <i class="fas fa-flask"></i>
-                    Projects & Research
-                </a>
-                <a href="./experience.html" class="button">
-                    <i class="fas fa-briefcase"></i>
-                    Experience
-                </a>
-            </div>
+            <svg class="heart-svg" viewBox="0 0 200 185" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="hg" cx="50%" cy="35%" r="65%">
+                        <stop offset="0%"   stop-color="#ff9bbf"/>
+                        <stop offset="50%"  stop-color="#e8174a"/>
+                        <stop offset="100%" stop-color="#8b0026"/>
+                    </radialGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="4" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                </defs>
+                <path
+                    d="M100 170 C100 170 15 115 15 60 C15 30 38 10 65 10 C80 10 93 18 100 30 C107 18 120 10 135 10 C162 10 185 30 185 60 C185 115 100 170 100 170Z"
+                    fill="url(#hg)"
+                    filter="url(#glow)"
+                    stroke="rgba(255,160,200,0.4)"
+                    stroke-width="1.5"
+                />
+                <!-- Text on heart -->
+                <text
+                    x="100" y="80"
+                    text-anchor="middle"
+                    fill="rgba(255,240,248,0.95)"
+                    font-family="Georgia, serif"
+                    font-size="14"
+                    font-weight="bold"
+                    letter-spacing="0.5"
+                >Will you be</text>
+                <text
+                    x="100" y="100"
+                    text-anchor="middle"
+                    fill="rgba(255,240,248,0.95)"
+                    font-family="Georgia, serif"
+                    font-size="14"
+                    font-weight="bold"
+                    letter-spacing="0.5"
+                >my valentine?</text>
+                <text x="100" y="122" text-anchor="middle" font-size="16">🤍</text>
+            </svg>
 
-            <!-- Social Media Icons -->
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/ansh-aroraa/" class="icon-button" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/AnshArora04" class="icon-button" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:ansh.aro@outlook.com" class="icon-button" aria-label="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="https://instagram.com/" class="icon-button" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
-        </section>
+        </button>
+
+        <div class="click-hint">click the heart</div>
     </div>
 
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
+    <!-- Photo overlay -->
+    <div class="overlay" id="overlay">
+        <div class="overlay-hearts" id="overlayHearts"></div>
+        <img
+            class="overlay-photo"
+            src="Screenshot 2026-02-13 at 11.33.37 PM.png"
+            alt="Our photo"
+        />
+        <div class="overlay-message">Happy Valentine's Day 💕</div>
+        <button class="close-btn" id="closeBtn">close</button>
+    </div>
+
+    <script>
+        /* ── Background ambient hearts ── */
+        const bgHearts = document.getElementById('bgHearts');
+        const symbols = ['♥', '❤', '♡', '💕', '💗'];
+
+        function spawnBgHeart() {
+            const el = document.createElement('span');
+            el.className = 'bg-heart';
+            el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (6 + Math.random() * 6) + 's';
+            el.style.animationDelay = (Math.random() * 4) + 's';
+            el.style.fontSize = (0.8 + Math.random() * 1.4) + 'rem';
+            bgHearts.appendChild(el);
+            el.addEventListener('animationend', () => el.remove());
+        }
+
+        setInterval(spawnBgHeart, 600);
+        for (let i = 0; i < 8; i++) setTimeout(spawnBgHeart, i * 300);
+
+        /* ── Burst on click ── */
+        function spawnBurst(cx, cy) {
+            const count = 14;
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('span');
+                el.className = 'burst-heart';
+                el.textContent = ['❤', '💕', '💗', '♥'][Math.floor(Math.random() * 4)];
+                const angle = (i / count) * 2 * Math.PI;
+                const dist = 80 + Math.random() * 80;
+                const tx = `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist - 40}px)`;
+                el.style.setProperty('--tx', tx);
+                el.style.left = cx + 'px';
+                el.style.top  = cy + 'px';
+                el.style.fontSize = (1 + Math.random() * 1.2) + 'rem';
+                el.style.animationDuration = (0.9 + Math.random() * 0.5) + 's';
+                document.body.appendChild(el);
+                el.addEventListener('animationend', () => el.remove());
+            }
+        }
+
+        /* ── Overlay floating hearts ── */
+        const overlayHeartsEl = document.getElementById('overlayHearts');
+        let overlayInterval = null;
+
+        function spawnOverlayHeart() {
+            const el = document.createElement('span');
+            el.className = 'float-heart';
+            el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (3.5 + Math.random() * 3) + 's';
+            el.style.fontSize = (0.7 + Math.random() * 1.2) + 'rem';
+            el.style.color = `hsl(${330 + Math.random() * 40}, 90%, ${65 + Math.random() * 20}%)`;
+            overlayHeartsEl.appendChild(el);
+            el.addEventListener('animationend', () => el.remove());
+        }
+
+        /* ── Open / close overlay ── */
+        const overlay  = document.getElementById('overlay');
+        const heartBtn = document.getElementById('heartBtn');
+        const closeBtn = document.getElementById('closeBtn');
+
+        heartBtn.addEventListener('click', (e) => {
+            const rect = heartBtn.getBoundingClientRect();
+            const cx = rect.left + rect.width  / 2;
+            const cy = rect.top  + rect.height / 2;
+            spawnBurst(cx, cy);
+
+            overlay.classList.add('active');
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => overlay.classList.add('visible'));
+            });
+
+            overlayInterval = setInterval(spawnOverlayHeart, 250);
+            for (let i = 0; i < 6; i++) setTimeout(spawnOverlayHeart, i * 120);
+        });
+
+        function closeOverlay() {
+            overlay.classList.remove('visible');
+            clearInterval(overlayInterval);
+            setTimeout(() => overlay.classList.remove('active'), 600);
+        }
+
+        closeBtn.addEventListener('click', closeOverlay);
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeOverlay();
+        });
+    </script>
 </body>
 </html>
