@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Valentine's Day 💕</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             min-height: 100vh;
@@ -22,24 +18,14 @@
         }
 
         /* ── Floating background hearts ── */
-        .bg-hearts {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-
+        .bg-hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
         .bg-heart {
-            position: absolute;
-            bottom: -60px;
-            font-size: 1.2rem;
-            opacity: 0;
+            position: absolute; bottom: -60px; font-size: 1.2rem; opacity: 0;
             animation: floatUp 8s ease-in infinite;
             color: rgba(255, 150, 180, 0.25);
         }
-
         @keyframes floatUp {
-            0%   { transform: translateY(0) scale(1)   rotate(0deg);   opacity: 0; }
+            0%   { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; }
             10%  { opacity: 1; }
             90%  { opacity: 0.6; }
             100% { transform: translateY(-110vh) scale(1.4) rotate(20deg); opacity: 0; }
@@ -47,43 +33,23 @@
 
         /* ── Main scene ── */
         .scene {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 28px;
+            position: relative; z-index: 1;
+            display: flex; flex-direction: column; align-items: center; gap: 28px;
         }
 
         /* ── Heart button ── */
         .heart-btn {
-            position: relative;
-            cursor: pointer;
-            background: none;
-            border: none;
-            outline: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 18px;
+            cursor: pointer; background: none; border: none; outline: none;
+            display: flex; flex-direction: column; align-items: center; gap: 18px;
         }
-
         .heart-svg {
-            width: 200px;
-            height: 185px;
+            width: 200px; height: 185px;
             filter: drop-shadow(0 0 30px rgba(255, 60, 120, 0.8));
             animation: heartbeat 1.4s ease-in-out infinite;
             transition: transform 0.15s ease;
         }
-
-        .heart-btn:hover .heart-svg {
-            filter: drop-shadow(0 0 50px rgba(255, 80, 150, 1));
-        }
-
-        .heart-btn:active .heart-svg {
-            transform: scale(0.9);
-        }
-
+        .heart-btn:hover .heart-svg { filter: drop-shadow(0 0 50px rgba(255, 80, 150, 1)); }
+        .heart-btn:active .heart-svg { transform: scale(0.9); }
         @keyframes heartbeat {
             0%   { transform: scale(1); }
             14%  { transform: scale(1.1); }
@@ -92,151 +58,87 @@
             70%  { transform: scale(1); }
             100% { transform: scale(1); }
         }
-
-        .heart-label {
-            color: #ffd6e8;
-            font-size: 1.55rem;
-            letter-spacing: 0.04em;
-            text-shadow: 0 0 18px rgba(255, 100, 160, 0.9);
-            text-align: center;
-            line-height: 1.4;
-            pointer-events: none;
-        }
-
         .click-hint {
-            color: rgba(255, 200, 220, 0.55);
-            font-size: 0.8rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
+            color: rgba(255, 200, 220, 0.55); font-size: 0.8rem;
+            letter-spacing: 0.12em; text-transform: uppercase;
             animation: pulse-hint 2s ease-in-out infinite;
         }
-
         @keyframes pulse-hint {
             0%, 100% { opacity: 0.4; }
             50%       { opacity: 0.9; }
         }
 
-        /* ── Overlay (photo reveal) ── */
+        /* ── Game overlay ── */
+        #gameOverlay {
+            display: none; position: fixed; inset: 0; z-index: 5;
+            opacity: 0; transition: opacity 0.5s ease;
+        }
+        #gameOverlay.active  { display: block; }
+        #gameOverlay.visible { opacity: 1; }
+        #gameCanvas { display: block; width: 100%; height: 100%; }
+
+        /* ── Photo overlay ── */
         .overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 10;
+            display: none; position: fixed; inset: 0; z-index: 10;
             background: rgba(10, 0, 8, 0.88);
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 24px;
-            opacity: 0;
-            transition: opacity 0.6s ease;
+            align-items: center; justify-content: center; flex-direction: column;
+            gap: 24px; opacity: 0; transition: opacity 0.6s ease;
         }
-
-        .overlay.active {
-            display: flex;
-        }
-
-        .overlay.visible {
-            opacity: 1;
-        }
-
+        .overlay.active  { display: flex; }
+        .overlay.visible { opacity: 1; }
         .overlay-photo {
-            max-width: min(480px, 90vw);
-            max-height: 65vh;
+            max-width: min(480px, 90vw); max-height: 65vh;
             border-radius: 20px;
             border: 3px solid rgba(255, 100, 160, 0.6);
             box-shadow: 0 0 60px rgba(255, 60, 120, 0.5), 0 0 120px rgba(180, 0, 80, 0.3);
             object-fit: cover;
-            transform: scale(0.7);
-            opacity: 0;
+            transform: scale(0.7); opacity: 0;
             transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
         }
-
-        .overlay.visible .overlay-photo {
-            transform: scale(1);
-            opacity: 1;
-        }
-
+        .overlay.visible .overlay-photo { transform: scale(1); opacity: 1; }
         .overlay-message {
-            color: #ffd6e8;
-            font-size: 1.8rem;
-            text-align: center;
+            color: #ffd6e8; font-size: 1.8rem; text-align: center;
             text-shadow: 0 0 20px rgba(255, 100, 160, 0.9);
-            opacity: 0;
-            transform: translateY(16px);
+            opacity: 0; transform: translateY(16px);
             transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
         }
-
-        .overlay.visible .overlay-message {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        .overlay.visible .overlay-message { opacity: 1; transform: translateY(0); }
         .close-btn {
-            margin-top: 4px;
-            background: none;
-            border: 1px solid rgba(255, 150, 190, 0.4);
-            color: rgba(255, 200, 220, 0.6);
-            font-size: 0.75rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            padding: 8px 22px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            background: none; border: 1px solid rgba(255, 150, 190, 0.4);
+            color: rgba(255, 200, 220, 0.6); font-size: 0.75rem;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            padding: 8px 22px; border-radius: 30px; cursor: pointer;
             opacity: 0;
             transition: opacity 0.5s ease 0.5s, color 0.2s ease, border-color 0.2s ease;
         }
+        .overlay.visible .close-btn { opacity: 1; }
+        .close-btn:hover { color: #ffd6e8; border-color: rgba(255, 150, 190, 0.9); }
 
-        .overlay.visible .close-btn {
-            opacity: 1;
-        }
-
-        .close-btn:hover {
-            color: #ffd6e8;
-            border-color: rgba(255, 150, 190, 0.9);
-        }
-
-        /* ── Burst hearts (on click) ── */
+        /* ── Burst hearts ── */
         .burst-heart {
-            position: fixed;
-            pointer-events: none;
-            z-index: 20;
-            font-size: 1.4rem;
+            position: fixed; pointer-events: none; z-index: 20; font-size: 1.4rem;
             animation: burst 1.2s ease-out forwards;
         }
-
         @keyframes burst {
-            0%   { opacity: 1; transform: translate(0, 0) scale(1); }
+            0%   { opacity: 1; transform: translate(0,0) scale(1); }
             100% { opacity: 0; transform: var(--tx) scale(0.3); }
         }
 
         /* ── Floating overlay hearts ── */
-        .overlay-hearts {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 11;
-            overflow: hidden;
-        }
-
+        .overlay-hearts { position: fixed; inset: 0; pointer-events: none; z-index: 11; overflow: hidden; }
         .float-heart {
-            position: absolute;
-            bottom: -50px;
-            font-size: 1.1rem;
-            opacity: 0;
+            position: absolute; bottom: -50px; font-size: 1.1rem; opacity: 0;
             animation: floatUp 5s ease-in forwards;
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient background hearts -->
     <div class="bg-hearts" id="bgHearts"></div>
 
     <!-- Main scene -->
-    <div class="scene">
-        <button class="heart-btn" id="heartBtn" aria-label="Click to reveal">
-
+    <div class="scene" id="mainScene">
+        <button class="heart-btn" id="heartBtn" aria-label="Click to start">
             <svg class="heart-svg" viewBox="0 0 200 185" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <radialGradient id="hg" cx="50%" cy="35%" r="65%">
@@ -249,138 +151,495 @@
                         <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                     </filter>
                 </defs>
-                <path
-                    d="M100 170 C100 170 15 115 15 60 C15 30 38 10 65 10 C80 10 93 18 100 30 C107 18 120 10 135 10 C162 10 185 30 185 60 C185 115 100 170 100 170Z"
-                    fill="url(#hg)"
-                    filter="url(#glow)"
-                    stroke="rgba(255,160,200,0.4)"
-                    stroke-width="1.5"
-                />
-                <!-- Text on heart -->
-                <text
-                    x="100" y="80"
-                    text-anchor="middle"
-                    fill="rgba(255,240,248,0.95)"
-                    font-family="Georgia, serif"
-                    font-size="14"
-                    font-weight="bold"
-                    letter-spacing="0.5"
-                >Will you be</text>
-                <text
-                    x="100" y="100"
-                    text-anchor="middle"
-                    fill="rgba(255,240,248,0.95)"
-                    font-family="Georgia, serif"
-                    font-size="14"
-                    font-weight="bold"
-                    letter-spacing="0.5"
-                >my valentine?</text>
+                <path d="M100 170 C100 170 15 115 15 60 C15 30 38 10 65 10 C80 10 93 18 100 30 C107 18 120 10 135 10 C162 10 185 30 185 60 C185 115 100 170 100 170Z"
+                    fill="url(#hg)" filter="url(#glow)"
+                    stroke="rgba(255,160,200,0.4)" stroke-width="1.5"/>
+                <text x="100" y="80" text-anchor="middle" fill="rgba(255,240,248,0.95)"
+                    font-family="Georgia, serif" font-size="14" font-weight="bold" letter-spacing="0.5">Will you be</text>
+                <text x="100" y="100" text-anchor="middle" fill="rgba(255,240,248,0.95)"
+                    font-family="Georgia, serif" font-size="14" font-weight="bold" letter-spacing="0.5">my valentine?</text>
                 <text x="100" y="122" text-anchor="middle" font-size="16">🤍</text>
             </svg>
-
         </button>
-
         <div class="click-hint">click the heart</div>
+    </div>
+
+    <!-- Game overlay -->
+    <div id="gameOverlay">
+        <canvas id="gameCanvas"></canvas>
     </div>
 
     <!-- Photo overlay -->
     <div class="overlay" id="overlay">
         <div class="overlay-hearts" id="overlayHearts"></div>
-        <img
-            class="overlay-photo"
-            src="photo.png"
-            alt="Our photo"
-        />
+        <img class="overlay-photo" src="photo.png" alt="Our photo"/>
         <div class="overlay-message">Happy Valentine's Day 💕</div>
         <button class="close-btn" id="closeBtn">close</button>
     </div>
 
     <script>
-        /* ── Background ambient hearts ── */
-        const bgHearts = document.getElementById('bgHearts');
-        const symbols = ['♥', '❤', '♡', '💕', '💗'];
+    /* ════════════════════════════════════════════
+       AMBIENT BACKGROUND HEARTS
+    ════════════════════════════════════════════ */
+    const bgHearts = document.getElementById('bgHearts');
+    const symbols = ['♥', '❤', '♡', '💕', '💗'];
 
-        function spawnBgHeart() {
+    function spawnBgHeart() {
+        const el = document.createElement('span');
+        el.className = 'bg-heart';
+        el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.animationDuration = (6 + Math.random() * 6) + 's';
+        el.style.animationDelay = (Math.random() * 4) + 's';
+        el.style.fontSize = (0.8 + Math.random() * 1.4) + 'rem';
+        bgHearts.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+    }
+    setInterval(spawnBgHeart, 600);
+    for (let i = 0; i < 8; i++) setTimeout(spawnBgHeart, i * 300);
+
+    /* ════════════════════════════════════════════
+       BURST HEARTS (on heart button click)
+    ════════════════════════════════════════════ */
+    function spawnBurst(cx, cy) {
+        for (let i = 0; i < 14; i++) {
             const el = document.createElement('span');
-            el.className = 'bg-heart';
-            el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-            el.style.left = Math.random() * 100 + 'vw';
-            el.style.animationDuration = (6 + Math.random() * 6) + 's';
-            el.style.animationDelay = (Math.random() * 4) + 's';
-            el.style.fontSize = (0.8 + Math.random() * 1.4) + 'rem';
-            bgHearts.appendChild(el);
+            el.className = 'burst-heart';
+            el.textContent = ['❤','💕','💗','♥'][Math.floor(Math.random() * 4)];
+            const angle = (i / 14) * 2 * Math.PI;
+            const dist = 80 + Math.random() * 80;
+            el.style.setProperty('--tx', `translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist - 40}px)`);
+            el.style.left = cx + 'px';
+            el.style.top  = cy + 'px';
+            el.style.fontSize = (1 + Math.random() * 1.2) + 'rem';
+            el.style.animationDuration = (0.9 + Math.random() * 0.5) + 's';
+            document.body.appendChild(el);
             el.addEventListener('animationend', () => el.remove());
         }
+    }
 
-        setInterval(spawnBgHeart, 600);
-        for (let i = 0; i < 8; i++) setTimeout(spawnBgHeart, i * 300);
+    /* ════════════════════════════════════════════
+       PHOTO OVERLAY
+    ════════════════════════════════════════════ */
+    const overlay        = document.getElementById('overlay');
+    const overlayHeartsEl= document.getElementById('overlayHearts');
+    const closeBtn       = document.getElementById('closeBtn');
+    let overlayInterval  = null;
 
-        /* ── Burst on click ── */
-        function spawnBurst(cx, cy) {
-            const count = 14;
-            for (let i = 0; i < count; i++) {
-                const el = document.createElement('span');
-                el.className = 'burst-heart';
-                el.textContent = ['❤', '💕', '💗', '♥'][Math.floor(Math.random() * 4)];
-                const angle = (i / count) * 2 * Math.PI;
-                const dist = 80 + Math.random() * 80;
-                const tx = `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist - 40}px)`;
-                el.style.setProperty('--tx', tx);
-                el.style.left = cx + 'px';
-                el.style.top  = cy + 'px';
-                el.style.fontSize = (1 + Math.random() * 1.2) + 'rem';
-                el.style.animationDuration = (0.9 + Math.random() * 0.5) + 's';
-                document.body.appendChild(el);
-                el.addEventListener('animationend', () => el.remove());
+    function spawnOverlayHeart() {
+        const el = document.createElement('span');
+        el.className = 'float-heart';
+        el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.animationDuration = (3.5 + Math.random() * 3) + 's';
+        el.style.fontSize = (0.7 + Math.random() * 1.2) + 'rem';
+        el.style.color = `hsl(${330 + Math.random()*40}, 90%, ${65 + Math.random()*20}%)`;
+        overlayHeartsEl.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+    }
+
+    function showPhotoOverlay() {
+        overlay.classList.add('active');
+        requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('visible')));
+        overlayInterval = setInterval(spawnOverlayHeart, 250);
+        for (let i = 0; i < 6; i++) setTimeout(spawnOverlayHeart, i * 120);
+    }
+
+    function closeOverlay() {
+        overlay.classList.remove('visible');
+        clearInterval(overlayInterval);
+        setTimeout(() => overlay.classList.remove('active'), 600);
+    }
+
+    closeBtn.addEventListener('click', closeOverlay);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeOverlay(); });
+
+    /* ════════════════════════════════════════════
+       GAME
+    ════════════════════════════════════════════ */
+    const mainScene   = document.getElementById('mainScene');
+    const heartBtn    = document.getElementById('heartBtn');
+    const gameOverlay = document.getElementById('gameOverlay');
+    const canvas      = document.getElementById('gameCanvas');
+    const ctx         = canvas.getContext('2d');
+
+    // ── Constants ──────────────────────────────
+    const GRAVITY     = 0.48;
+    const JUMP        = -9.5;
+    const SPEED       = 2.8;
+    const GAP         = 158;
+    const PIPE_W      = 62;
+    const GAME_SECS   = 30;
+    const SPAWN_MS    = 2000;
+
+    // ── State ──────────────────────────────────
+    let state = 'idle'; // idle | ready | playing | dead | won
+    let player, pipes, particles, timerSec, timerAccum, spawnAccum, raf, lastTs;
+
+    function initGame() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+        player = { x: canvas.width * 0.2, y: canvas.height / 2, vy: 0, rotation: 0 };
+        pipes       = [];
+        particles   = [];
+        timerSec    = GAME_SECS;
+        timerAccum  = 0;
+        spawnAccum  = SPAWN_MS * 0.7; // first pipe comes in sooner
+        state       = 'ready';
+    }
+
+    function resetGame() {
+        cancelAnimationFrame(raf);
+        initGame();
+        loop(performance.now());
+    }
+
+    // ── Input ──────────────────────────────────
+    function flap() {
+        if (state === 'ready') {
+            state = 'playing';
+        }
+        if (state === 'playing') {
+            player.vy = JUMP;
+        }
+        if (state === 'dead') {
+            resetGame();
+        }
+    }
+
+    canvas.addEventListener('click',   flap);
+    canvas.addEventListener('touchstart', e => { e.preventDefault(); flap(); }, { passive: false });
+    window.addEventListener('keydown', e => { if (e.code === 'Space') { e.preventDefault(); flap(); } });
+
+    // ── Drawing helpers ────────────────────────
+    function heartPath(ctx, cx, cy, s) {
+        ctx.beginPath();
+        ctx.moveTo(cx, cy + s * 0.38);
+        ctx.bezierCurveTo(cx - s*0.08, cy + s*0.12, cx - s*0.55, cy + s*0.12, cx - s*0.55, cy - s*0.18);
+        ctx.bezierCurveTo(cx - s*0.55, cy - s*0.52, cx, cy - s*0.52, cx, cy - s*0.18);
+        ctx.bezierCurveTo(cx, cy - s*0.52, cx + s*0.55, cy - s*0.52, cx + s*0.55, cy - s*0.18);
+        ctx.bezierCurveTo(cx + s*0.55, cy + s*0.12, cx + s*0.08, cy + s*0.12, cx, cy + s*0.38);
+        ctx.closePath();
+    }
+
+    function drawPlayer() {
+        const { x, y, rotation } = player;
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rotation);
+
+        // glow
+        ctx.shadowBlur  = 24;
+        ctx.shadowColor = 'rgba(255, 80, 140, 0.85)';
+
+        const grad = ctx.createRadialGradient(-6, -8, 2, 0, 0, 24);
+        grad.addColorStop(0,   '#ffb8d4');
+        grad.addColorStop(0.5, '#e8174a');
+        grad.addColorStop(1,   '#7a0020');
+        ctx.fillStyle = grad;
+
+        heartPath(ctx, 0, 0, 26);
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+        ctx.restore();
+    }
+
+    function drawRose(cx, cy, facingDown) {
+        const dir = facingDown ? 1 : -1;
+
+        // leaves
+        ctx.fillStyle = '#2a6b28';
+        ctx.beginPath();
+        ctx.ellipse(cx - 14, cy + dir * 6, 10, 4, dir * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(cx + 14, cy + dir * 6, 10, 4, -dir * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+
+        const ry = cy + dir * 14;
+
+        // petals
+        ctx.fillStyle = '#bb0f3a';
+        for (let i = 0; i < 6; i++) {
+            const a = (i / 6) * Math.PI * 2;
+            ctx.beginPath();
+            ctx.ellipse(cx + Math.cos(a) * 7, ry + Math.sin(a) * 7, 7, 5, a, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        // inner petals
+        ctx.fillStyle = '#e0174a';
+        for (let i = 0; i < 4; i++) {
+            const a = (i / 4) * Math.PI * 2 + 0.4;
+            ctx.beginPath();
+            ctx.ellipse(cx + Math.cos(a) * 4, ry + Math.sin(a) * 4, 5, 3.5, a, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        // centre
+        ctx.fillStyle = '#ff4d7a';
+        ctx.beginPath();
+        ctx.arc(cx, ry, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    function drawPipe(pipe) {
+        const { x, gapY } = pipe;
+        const topH  = gapY - GAP / 2;
+        const botY  = gapY + GAP / 2;
+        const botH  = canvas.height - botY;
+        const cap   = 16; // wider cap at gap edge
+
+        // stem gradient
+        const g = ctx.createLinearGradient(x, 0, x + PIPE_W, 0);
+        g.addColorStop(0,   '#1a4a16');
+        g.addColorStop(0.4, '#2d7a28');
+        g.addColorStop(1,   '#163d12');
+        ctx.fillStyle = g;
+
+        // top pipe
+        if (topH > 0) {
+            ctx.fillRect(x, 0, PIPE_W, topH);
+            // cap
+            ctx.fillRect(x - cap/2, topH - 20, PIPE_W + cap, 20);
+            // thorns
+            ctx.fillStyle = '#3d8a38';
+            for (let ty = 30; ty < topH - 30; ty += 38) {
+                ctx.beginPath();
+                ctx.moveTo(x, ty);
+                ctx.lineTo(x - 8, ty + 10);
+                ctx.lineTo(x, ty + 18);
+                ctx.fill();
+            }
+            ctx.fillStyle = g;
+        }
+
+        // bottom pipe
+        if (botH > 0) {
+            ctx.fillRect(x, botY, PIPE_W, botH);
+            ctx.fillRect(x - cap/2, botY, PIPE_W + cap, 20);
+            ctx.fillStyle = '#3d8a38';
+            for (let ty = botY + 38; ty < canvas.height - 20; ty += 38) {
+                ctx.beginPath();
+                ctx.moveTo(x, ty);
+                ctx.lineTo(x - 8, ty + 10);
+                ctx.lineTo(x, ty + 18);
+                ctx.fill();
             }
         }
 
-        /* ── Overlay floating hearts ── */
-        const overlayHeartsEl = document.getElementById('overlayHearts');
-        let overlayInterval = null;
+        // roses
+        drawRose(x + PIPE_W / 2, topH - 14, true);
+        drawRose(x + PIPE_W / 2, botY + 14, false);
+    }
 
-        function spawnOverlayHeart() {
-            const el = document.createElement('span');
-            el.className = 'float-heart';
-            el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-            el.style.left = Math.random() * 100 + 'vw';
-            el.style.animationDuration = (3.5 + Math.random() * 3) + 's';
-            el.style.fontSize = (0.7 + Math.random() * 1.2) + 'rem';
-            el.style.color = `hsl(${330 + Math.random() * 40}, 90%, ${65 + Math.random() * 20}%)`;
-            overlayHeartsEl.appendChild(el);
-            el.addEventListener('animationend', () => el.remove());
-        }
+    function drawBackground() {
+        const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        grad.addColorStop(0,   '#0f000a');
+        grad.addColorStop(0.5, '#240010');
+        grad.addColorStop(1,   '#3d0018');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
 
-        /* ── Open / close overlay ── */
-        const overlay  = document.getElementById('overlay');
-        const heartBtn = document.getElementById('heartBtn');
-        const closeBtn = document.getElementById('closeBtn');
+    function drawTimerBar() {
+        const frac = timerSec / GAME_SECS;
+        const W = canvas.width * 0.55;
+        const x = (canvas.width - W) / 2;
+        const y = 22;
+        const h = 10;
+        const r = 5;
 
-        heartBtn.addEventListener('click', (e) => {
-            const rect = heartBtn.getBoundingClientRect();
-            const cx = rect.left + rect.width  / 2;
-            const cy = rect.top  + rect.height / 2;
-            spawnBurst(cx, cy);
+        // track
+        ctx.fillStyle = 'rgba(255,255,255,0.1)';
+        roundRect(ctx, x, y, W, h, r);
+        ctx.fill();
 
-            overlay.classList.add('active');
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => overlay.classList.add('visible'));
+        // fill
+        const barGrad = ctx.createLinearGradient(x, 0, x + W, 0);
+        barGrad.addColorStop(0,   '#ff3366');
+        barGrad.addColorStop(0.5, '#ff6694');
+        barGrad.addColorStop(1,   '#ff3366');
+        ctx.fillStyle = barGrad;
+        roundRect(ctx, x, y, Math.max(W * frac, r * 2), h, r);
+        ctx.fill();
+
+        // time label
+        ctx.fillStyle = '#ffd6e8';
+        ctx.font = 'bold 15px Georgia, serif';
+        ctx.textAlign = 'center';
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = 'rgba(255,80,140,0.7)';
+        ctx.fillText(Math.ceil(timerSec) + 's', canvas.width / 2, y - 6);
+        ctx.shadowBlur = 0;
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + w - r, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+        ctx.lineTo(x + w, y + h - r);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        ctx.lineTo(x + r, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+    }
+
+    // ── Particles ──────────────────────────────
+    function spawnParticles(x, y) {
+        for (let i = 0; i < 18; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 2 + Math.random() * 5;
+            particles.push({
+                x, y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                life: 1,
+                size: 6 + Math.random() * 10,
+                sym: symbols[Math.floor(Math.random() * symbols.length)]
             });
+        }
+    }
 
-            overlayInterval = setInterval(spawnOverlayHeart, 250);
-            for (let i = 0; i < 6; i++) setTimeout(spawnOverlayHeart, i * 120);
-        });
+    // ── Collision ──────────────────────────────
+    function collides() {
+        const R = 18;
+        if (player.y - R < 0 || player.y + R > canvas.height) return true;
+        for (const p of pipes) {
+            if (player.x + R > p.x && player.x - R < p.x + PIPE_W) {
+                const gapTop = p.gapY - GAP / 2;
+                const gapBot = p.gapY + GAP / 2;
+                if (player.y - R < gapTop || player.y + R > gapBot) return true;
+            }
+        }
+        return false;
+    }
 
-        function closeOverlay() {
-            overlay.classList.remove('visible');
-            clearInterval(overlayInterval);
-            setTimeout(() => overlay.classList.remove('active'), 600);
+    // ── Overlays drawn on canvas ───────────────
+    function drawReady() {
+        ctx.fillStyle = 'rgba(255, 220, 235, 0.88)';
+        ctx.font = 'bold 26px Georgia, serif';
+        ctx.textAlign = 'center';
+        ctx.shadowBlur = 16;
+        ctx.shadowColor = 'rgba(255,60,120,0.8)';
+        ctx.fillText('Tap / Click to flap!', canvas.width / 2, canvas.height / 2 - 14);
+        ctx.font = '16px Georgia, serif';
+        ctx.fillStyle = 'rgba(255,200,220,0.7)';
+        ctx.fillText('dodge the rose bushes for 30 seconds 🌹', canvas.width / 2, canvas.height / 2 + 18);
+        ctx.shadowBlur = 0;
+    }
+
+    function drawDead() {
+        ctx.fillStyle = 'rgba(0,0,0,0.45)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.textAlign = 'center';
+        ctx.shadowBlur = 18;
+        ctx.shadowColor = 'rgba(255,60,120,0.9)';
+        ctx.fillStyle = '#ffd6e8';
+        ctx.font = 'bold 34px Georgia, serif';
+        ctx.fillText('Oops! 💔', canvas.width / 2, canvas.height / 2 - 30);
+        ctx.font = '18px Georgia, serif';
+        ctx.fillStyle = 'rgba(255,200,220,0.8)';
+        ctx.fillText('tap / click to try again', canvas.width / 2, canvas.height / 2 + 14);
+        ctx.shadowBlur = 0;
+    }
+
+    // ── Main loop ──────────────────────────────
+    function loop(ts) {
+        const dt = Math.min(ts - (lastTs || ts), 50);
+        lastTs = ts;
+
+        drawBackground();
+        pipes.forEach(drawPipe);
+        drawPlayer();
+
+        // particles
+        particles = particles.filter(p => p.life > 0);
+        for (const p of particles) {
+            p.x  += p.vx; p.y += p.vy; p.vy += 0.15; p.life -= 0.035;
+            ctx.globalAlpha = p.life;
+            ctx.font = p.size + 'px serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(p.sym, p.x, p.y);
+            ctx.globalAlpha = 1;
         }
 
-        closeBtn.addEventListener('click', closeOverlay);
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) closeOverlay();
-        });
+        if (state === 'ready') {
+            drawReady();
+        }
+
+        if (state === 'playing') {
+            // physics
+            player.vy       += GRAVITY;
+            player.y        += player.vy;
+            player.rotation  = Math.min(Math.max(player.vy * 0.055, -0.45), 0.9);
+
+            // timer
+            timerAccum += dt;
+            if (timerAccum >= 1000) { timerAccum -= 1000; timerSec--; }
+
+            // spawn pipes
+            spawnAccum += dt;
+            if (spawnAccum >= SPAWN_MS) {
+                spawnAccum = 0;
+                const minGap = GAP / 2 + 30;
+                const gapY = minGap + Math.random() * (canvas.height - minGap * 2);
+                pipes.push({ x: canvas.width + 10, gapY });
+            }
+
+            // move pipes
+            pipes.forEach(p => p.x -= SPEED * (dt / 16.67));
+            pipes = pipes.filter(p => p.x + PIPE_W > -20);
+
+            // won
+            if (timerSec <= 0) {
+                state = 'won';
+                setTimeout(() => {
+                    gameOverlay.classList.remove('visible');
+                    setTimeout(() => {
+                        gameOverlay.classList.remove('active');
+                        cancelAnimationFrame(raf);
+                    }, 500);
+                    setTimeout(showPhotoOverlay, 300);
+                }, 600);
+            }
+
+            // collision
+            if (collides()) {
+                state = 'dead';
+                spawnParticles(player.x, player.y);
+            }
+        }
+
+        if (state === 'dead') drawDead();
+
+        drawTimerBar();
+        raf = requestAnimationFrame(loop);
+    }
+
+    // ── Start game when heart is clicked ───────
+    heartBtn.addEventListener('click', e => {
+        const rect = heartBtn.getBoundingClientRect();
+        spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+        mainScene.style.display = 'none';
+        gameOverlay.classList.add('active');
+        requestAnimationFrame(() => requestAnimationFrame(() => gameOverlay.classList.add('visible')));
+
+        initGame();
+        lastTs = null;
+        raf = requestAnimationFrame(loop);
+    });
+
+    window.addEventListener('resize', () => {
+        if (state !== 'idle') {
+            canvas.width  = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+    });
     </script>
 </body>
 </html>
