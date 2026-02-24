@@ -1,0 +1,427 @@
+/* =====================================================
+   Ansh Arorα — Personal Site
+   Neobrutalist · Monochrome · No frameworks
+   ===================================================== */
+
+/* --- Variables --- */
+:root {
+  --bg:         #ECEAE4;
+  --text:       #0a0a0a;
+  --white:      #ffffff;
+  --border:     #0a0a0a;
+  --shadow:     5px 5px 0 0 #0a0a0a;
+  --shadow-sm:  3px 3px 0 0 #0a0a0a;
+  --radius:     999px;    /* pill */
+  --radius-card: 6px;
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-sans:  'Inter', system-ui, sans-serif;
+  --nav-h:      56px;
+}
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide scrollbar */
+* { scrollbar-width: none; -ms-overflow-style: none; }
+*::-webkit-scrollbar { display: none; }
+
+a { color: inherit; text-decoration: none; }
+
+/* =====================================================
+   LANDING PAGE
+   ===================================================== */
+
+.hero-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.25rem 4rem;
+  text-align: center;
+}
+
+/* Name */
+.hero-name {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 400;
+  letter-spacing: -1px;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: 0.65rem;
+}
+
+.greek-alpha {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+/* Tagline */
+.hero-tagline {
+  font-family: var(--font-sans);
+  font-size: clamp(0.78rem, 2.2vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  opacity: 0.65;
+  margin-bottom: 2rem;
+}
+
+/* Divider */
+.hero-divider {
+  width: 100%;
+  max-width: 420px;
+  border: none;
+  border-top: 1.5px solid var(--border);
+  margin: 0 auto 2rem;
+  opacity: 0.35;
+}
+
+/* Landing nav buttons */
+.landing-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+}
+
+/* --- Button (pill, neobrutalist) --- */
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 18px 28px 14px;
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.btn:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 1px 1px 0 0 var(--border);
+}
+
+.btn:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 0 var(--border);
+}
+
+.btn-label {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.btn-desc {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--text);
+  opacity: 0.55;
+  margin-top: 3px;
+  letter-spacing: 0.01em;
+}
+
+/* Social icons */
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  font-size: 1.05rem;
+  background: transparent;
+  color: var(--text);
+  transition: background 0.12s ease, color 0.12s ease;
+  text-decoration: none;
+}
+
+.icon-btn:hover {
+  background: var(--text);
+  color: var(--white);
+}
+
+/* =====================================================
+   INNER PAGES — STICKY NAV
+   ===================================================== */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.5rem;
+}
+
+.nav-brand {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-brand .greek-alpha { font-style: italic; }
+
+/* Right side: page links on top, connect below */
+.nav-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.12s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active { opacity: 1; }
+
+/* Connect row */
+.nav-connect {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-connect-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.35;
+}
+
+.nav-icon-link {
+  font-size: 0.82rem;
+  color: var(--text);
+  opacity: 0.55;
+  text-decoration: none;
+  transition: opacity 0.12s ease;
+}
+
+.nav-icon-link:hover { opacity: 1; }
+
+/* =====================================================
+   INNER PAGES — LAYOUT
+   ===================================================== */
+
+.page-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 5rem;
+}
+
+.page-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border);
+}
+
+/* =====================================================
+   CARD COMPONENT
+   ===================================================== */
+
+.card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.card-title {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.card-meta {
+  font-size: 0.78rem;
+  font-weight: 400;
+  opacity: 0.55;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.card-body {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  opacity: 0.85;
+}
+
+.card-body ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.card-body ul li {
+  margin-bottom: 0.3rem;
+}
+
+/* Tags */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 0.9rem;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+}
+
+/* Card link */
+.card-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-bottom: 1.5px solid var(--border);
+  transition: opacity 0.12s ease;
+}
+
+.card-link:hover { opacity: 0.55; }
+
+/* =====================================================
+   ABOUT PAGE — BIO BLOCK
+   ===================================================== */
+
+.bio-block {
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.bio-block p { margin-bottom: 1rem; }
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin-bottom: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* =====================================================
+   WRITING PAGE — COMING SOON
+   ===================================================== */
+
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.coming-soon p {
+  font-size: 0.95rem;
+  opacity: 0.6;
+}
+
+/* =====================================================
+   FADE-IN ENTRANCE
+   ===================================================== */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeUp 0.55s ease forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Stagger hero children */
+.hero-name    { animation-delay: 0.05s; }
+.hero-tagline { animation-delay: 0.15s; }
+.hero-divider { animation-delay: 0.22s; }
+.landing-nav  { animation-delay: 0.3s;  }
+.social-icons { animation-delay: 0.42s; }
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 480px) {
+  .site-nav { padding: 0 1rem; }
+
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.78rem; }
+
+  .page-container { padding: 2rem 1rem 4rem; }
+
+  .card { padding: 1.2rem 1.25rem; }
+}
+
+@media (max-width: 360px) {
+  .nav-links a:not(.active) { display: none; }
+}

@@ -1,121 +1,76 @@
-// Main JavaScript file
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize any elements with fade-in class
-    document.querySelectorAll('.fade-in').forEach((element, index) => {
-        element.style.animationDelay = `${index * 0.1}s`;
-    });
+document.addEventListener('DOMContentLoaded', function () {
 
-    // Initialize particles.js
-    particlesJS('particles-js', {
-        particles: {
-            number: { value: 80, density: { enable: true, value_area: 800 } },
-            color: { value: '#ffffff' },
-            shape: { type: 'circle' },
-            opacity: { value: 0.5, random: false },
-            size: { value: 3, random: true },
-            line_linked: {
-                enable: true,
-                distance: 150,
-                color: '#ffffff',
-                opacity: 0.4,
-                width: 1
-            },
-            move: {
-                enable: true,
-                speed: 6,
-                direction: 'none',
-                random: false,
-                straight: false,
-                out_mode: 'out',
-                bounce: false
-            }
-        },
-        interactivity: {
-            detect_on: 'canvas',
-            events: {
-                onhover: { enable: true, mode: 'repulse' },
-                onclick: { enable: true, mode: 'push' },
-                resize: true
-            }
-        }
-    });
+  populateProjects();
+  populateTimeline();
+  populateWriting();
 
-    // Update social links
-    updateSocialLinks();
-
-    // Populate projects
-    populateProjects();
-
-    // Populate timeline
-    populateTimeline();
 });
 
-// Update social link hrefs
-function updateSocialLinks() {
-    const socialLinks = document.querySelectorAll('.social-button');
-    socialLinks.forEach(link => {
-        const platform = link.href.split('#')[1];
-        if (siteConfig.social[platform]) {
-            link.href = siteConfig.social[platform];
-        }
-    });
-}
-
-// Populate project cards
+// Inject project cards into #projects-container
 function populateProjects() {
-    const projectsContainer = document.querySelector('.project-cards');
-    if (!projectsContainer) return;
+  const container = document.getElementById('projects-container');
+  if (!container || !siteConfig.projects.length) return;
 
-    siteConfig.projects.forEach(project => {
-        const projectCard = document.createElement('div');
-        projectCard.className = 'project-card fade-in';
+  siteConfig.projects.forEach(function (project) {
+    const tagsHTML = project.tags
+      ? project.tags.map(function (t) { return '<span class="tag">' + t + '</span>'; }).join('')
+      : '';
 
-        projectCard.innerHTML = `
-            <h3>${project.title}</h3>
-            <p>${project.description}</p>
-            ${project.highlights ? `
-                <ul class="highlights">
-                    ${project.highlights.map(point => `<li>${point}</li>`).join('')}
-                </ul>
-            ` : ''}
-            ${project.link ? `
-                <a href="${project.link}" class="project-link" target="_blank">
-                    View Project →
-                </a>
-            ` : ''}
-        `;
+    const linkHTML = project.link
+      ? '<a href="' + project.link + '" class="card-link" target="_blank" rel="noopener">View project &rarr;</a>'
+      : '';
 
-        projectsContainer.appendChild(projectCard);
-    });
+    const card = document.createElement('div');
+    card.className = 'card fade-in';
+    card.innerHTML =
+      '<div class="card-title">' + project.title + '</div>' +
+      '<div class="card-body"><p>' + project.description + '</p></div>' +
+      (tagsHTML ? '<div class="card-tags">' + tagsHTML + '</div>' : '') +
+      linkHTML;
+
+    container.appendChild(card);
+  });
 }
 
-// Populate timeline entries
+// Inject experience cards into #experience-container
 function populateTimeline() {
-    const timelineContainer = document.querySelector('.timeline');
-    if (!timelineContainer) return;
+  const container = document.getElementById('experience-container');
+  if (!container || !siteConfig.timeline.length) return;
 
-    siteConfig.timeline.forEach(entry => {
-        const timelineItem = document.createElement('div');
-        timelineItem.className = 'timeline-item fade-in';
+  siteConfig.timeline.forEach(function (entry) {
+    const pointsHTML = entry.points
+      ? '<ul>' + entry.points.map(function (p) { return '<li>' + p + '</li>'; }).join('') + '</ul>'
+      : '';
 
-        timelineItem.innerHTML = `
-            <div class="timeline-content timeline-${entry.type}">
-                <div class="timeline-header">
-                    <h3 class="timeline-role">${entry.role}</h3>
-                    <div class="timeline-meta">
-                        <span class="location">${entry.location}</span> • 
-                        <span class="organization">${entry.organization}</span> •
-                        <span class="date">${entry.date}</span>
-                    </div>
-                </div>
-                ${entry.points ? `
-                    <ul class="timeline-points">
-                        ${entry.points.map(point => `<li>${point}</li>`).join('')}
-                    </ul>
-                ` : ''}
-            </div>
-        `;
+    const card = document.createElement('div');
+    card.className = 'card fade-in';
+    card.innerHTML =
+      '<div class="card-title">' + entry.role + '</div>' +
+      '<div class="card-meta">' + entry.organization + ' &nbsp;·&nbsp; ' + entry.location + ' &nbsp;·&nbsp; ' + entry.date + '</div>' +
+      '<div class="card-body">' + pointsHTML + '</div>';
 
-        timelineContainer.appendChild(timelineItem);
-    });
+    container.appendChild(card);
+  });
+}
+
+// Inject writing post cards into #writing-container
+function populateWriting() {
+  const container = document.getElementById('writing-container');
+  if (!container || !siteConfig.writing || !siteConfig.writing.length) return;
+
+  // Hide the "coming soon" message if there are real posts
+  const comingSoon = document.querySelector('.coming-soon');
+  if (comingSoon) comingSoon.style.display = 'none';
+
+  siteConfig.writing.forEach(function (post) {
+    const card = document.createElement('div');
+    card.className = 'card fade-in';
+    card.innerHTML =
+      '<div class="card-title"><a href="' + post.link + '">' + post.title + '</a></div>' +
+      '<div class="card-meta">' + post.date + '</div>' +
+      '<div class="card-body"><p>' + post.excerpt + '</p></div>' +
+      '<a href="' + post.link + '" class="card-link">Read &rarr;</a>';
+
+    container.appendChild(card);
+  });
 }
