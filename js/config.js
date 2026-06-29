@@ -47,14 +47,14 @@ const siteConfig = {
     }
   ],
 
-  // ---- Writing (leave empty until you have posts) --
+  // ---- Writing / Blog posts -----------------------
   writing: [
-    // {
-    //   title: "Post title",
-    //   date: "February 2026",
-    //   excerpt: "One sentence teaser for the post.",
-    //   link: "posts/post-slug.html"
-    // }
+    {
+      title: "The AI Value Chain: A Chokepoint Briefing",
+      date: "June 2026",
+      excerpt: "From lithospheric extraction to inference — the 20 links of the AI value chain and where the real chokepoints sit. Password-protected.",
+      link: "blog/AI-Value-Chain-Brief/"
+    }
   ]
 
 };
