@@ -52,7 +52,7 @@ const siteConfig = {
     {
       title: "The AI Value Chain: A Chokepoint Briefing",
       date: "June 2026",
-      excerpt: "From lithospheric extraction to inference — the 20 links of the AI value chain and where the real chokepoints sit. Password-protected.",
+      excerpt: "From lithospheric extraction to inference — the 20 links of the AI value chain and where the real chokepoints sit.",
       link: "blog/AI-Value-Chain-Brief/"
     }
   ]
